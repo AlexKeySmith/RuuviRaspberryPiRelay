@@ -16,5 +16,6 @@
 				]
 			}
 		
-	}
+	},
+	"remoteUser": "vscode" // for any new running apps, e.g. our c# app so it can use bluetooth
 }

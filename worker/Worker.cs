@@ -1,4 +1,6 @@
 namespace worker;
+using Linux.Bluetooth;
+using Linux.Bluetooth.Extensions;
 
 public class Worker : BackgroundService
 {
@@ -11,13 +13,30 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        var adapter = (await BlueZManager.GetAdaptersAsync()).First();
+
         while (!stoppingToken.IsCancellationRequested)
         {
-            if (_logger.IsEnabled(LogLevel.Information))
+            
+            int newDevices = 0;
+            using (await adapter.WatchDevicesAddedAsync(async device =>
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                newDevices++;
+                // Write a message when we detect new devices during the scan.
+                string deviceDescription = await GetDeviceDescriptionAsync(device);
+                 _logger.LogInformation("[NEW] {deviceDescription}", deviceDescription);
+            }))
+            {
+                await adapter.StartDiscoveryAsync();
+                await Task.Delay(TimeSpan.FromSeconds(5));
+                await adapter.StopDiscoveryAsync();
             }
-            await Task.Delay(1000, stoppingToken);
         }
+    }
+
+    private static async Task<string> GetDeviceDescriptionAsync(IDevice1 device)
+    {
+      var deviceProperties = await device.GetAllAsync();
+      return $"{deviceProperties.Alias} (Address: {deviceProperties.Address}, RSSI: {deviceProperties.RSSI})";
     }
 }
