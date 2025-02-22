@@ -7,16 +7,27 @@ namespace RuuviRaspberryPiRelay.RuuviDataParser.UnitTests;
 public class UnitTest
 {
     const string testData = "0512FC5394C37C0004FFFC040CAC364200CDCBB8334C884F";
+    private readonly Payload payload;
+
+
+    public UnitTest()
+    {
+        payload = Parser.Parse(Convert.FromHexString(testData));
+    }
 
     [Fact]
     public void ShouldGetDataFormat()
     {
-        var payload = Parser.Parse(Convert.FromHexString(testData));
-
-        payload.DataFormat.ShouldBe((sbyte)5);
+        payload.DataFormat.ShouldBe((byte)5);
+    }
+    
+    [Fact]
+    public void ShouldGetTemperature()
+    {
+        payload.Temperature.ShouldBe(24.3d);
     }
 
-    
+
 
 
 }

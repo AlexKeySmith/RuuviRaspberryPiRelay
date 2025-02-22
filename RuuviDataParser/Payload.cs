@@ -1,4 +1,5 @@
 public record Payload
 {
-    public required sbyte DataFormat;
+    public required double Temperature;
+    public required byte DataFormat;
 }
