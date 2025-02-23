@@ -28,6 +28,21 @@ public class UnitTest
     }
 
 
+    
+    [Fact]
+    public void ShouldGetTemperatureSpreader()
+    {
+        Parser.GetTemperatureSpread(Convert.FromHexString(testData)).ShouldBe(24.3d);
+    }
+
+
+
+    [Fact]
+    public void ShouldGetTemperatureSpan()
+    {
+        Parser.GetTemperatureSpan(Convert.FromHexString(testData)).ShouldBe(24.3d);
+    }
+
 
 
 }

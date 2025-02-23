@@ -14,7 +14,7 @@ public static class Parser
         };
     }
 
-    private static double GetTemperature(byte[] data)
+    public static double GetTemperature(byte[] data)
     {
 
         // Extract temperature bytes (offsets 1-2)
@@ -25,6 +25,46 @@ public static class Parser
         }
 
         var rawTemperature = BitConverter.ToInt16(temperatureData.ToArray(),0);
+
+
+        // Calculate actual temperature
+        double temperature = rawTemperature * 0.005;
+        return temperature;
+
+    }
+
+    public static double GetTemperatureSpread(byte[] data)
+    {
+
+        // Extract temperature bytes (offsets 1-2)
+        var temperatureData = data[1..3];
+
+        if (BitConverter.IsLittleEndian) {
+            Array.Reverse(temperatureData);
+        }
+
+        var rawTemperature = BitConverter.ToInt16(temperatureData,0);
+
+
+        // Calculate actual temperature
+        double temperature = rawTemperature * 0.005;
+        return temperature;
+
+    }
+
+    public static double GetTemperatureSpan(byte[] data)
+    {
+
+        Span<byte> dataAsSpan = data;
+
+        // Extract temperature bytes (offsets 1-2)
+        var temperatureData = dataAsSpan[1..3];
+
+        if (BitConverter.IsLittleEndian) {
+            MemoryExtensions.Reverse(temperatureData);
+        }
+
+        var rawTemperature = Int16.Parse(temperatureData);
 
 
         // Calculate actual temperature

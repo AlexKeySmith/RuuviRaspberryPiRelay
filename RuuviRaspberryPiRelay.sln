@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuuviRaspberryPiRelay.Ruuvi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuuviRaspberryPiRelay.RuuviDataParser.UnitTests", "RuuviDataParser.UnitTests\RuuviRaspberryPiRelay.RuuviDataParser.UnitTests.csproj", "{4DE69B6B-B2BC-46F9-B2C2-AE269E37BC69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuuviDataParser.Benchmarks", "RuuviDataParser.Benchmarks\RuuviDataParser.Benchmarks.csproj", "{018C5699-32EB-42BA-86BF-1C4D752BDD98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{4DE69B6B-B2BC-46F9-B2C2-AE269E37BC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE69B6B-B2BC-46F9-B2C2-AE269E37BC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DE69B6B-B2BC-46F9-B2C2-AE269E37BC69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{018C5699-32EB-42BA-86BF-1C4D752BDD98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{018C5699-32EB-42BA-86BF-1C4D752BDD98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{018C5699-32EB-42BA-86BF-1C4D752BDD98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{018C5699-32EB-42BA-86BF-1C4D752BDD98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
