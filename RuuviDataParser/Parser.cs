@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace RuuviRaspberryPiRelay.RuuviDataParser;
 
@@ -63,9 +64,8 @@ public static class Parser
         if (BitConverter.IsLittleEndian) {
             MemoryExtensions.Reverse(temperatureData);
         }
-
-        var rawTemperature = Int16.Parse(temperatureData);
-
+        
+        var rawTemperature = MemoryMarshal.AsRef<short>(temperatureData);
 
         // Calculate actual temperature
         double temperature = rawTemperature * 0.005;
