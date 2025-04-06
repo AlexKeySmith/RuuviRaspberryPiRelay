@@ -35,7 +35,7 @@ namespace RuuviDataParser.Benchmarks
         [Benchmark]
         public void BenchmarkSpan()
         {
-            Parser.GetTemperatureSpan(Convert.FromHexString("0512FC5394C37C0004FFFC040CAC364200CDCBB8334C884F"));
+            Parser.GetTemperatureSpan(testData);
 
         }
         
